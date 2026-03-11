@@ -40,12 +40,33 @@ if st.button("Predict Survival"):
     else:
         st.error("Passenger is likely to NOT survive")
 
+prob = model.predict_proba([[pclass, age, fare]])
+
+st.write("Survival Probability:", prob[0][1])
+st.progress(float(prob[0][1]))
+
+
+
+
+
 # -----------------------------
 # Dataset Preview
 # -----------------------------
 st.subheader("Dataset Preview")
 
 st.dataframe(df.head())
+
+tab1, tab2, tab3 = st.tabs(["Prediction", "Charts", "Model"])
+
+with tab1:
+    st.write("Prediction UI")
+
+with tab2:
+    st.write("Data charts")
+
+with tab3:
+    st.write("Decision Tree")
+
 
 # -----------------------------
 # Charts Section
@@ -125,6 +146,16 @@ plot_tree(
     class_names=["dead","survived"],
     filled=True
 )
+
+st.pyplot(fig)
+
+# confusion matrix
+
+from sklearn.metrics import ConfusionMatrixDisplay
+
+fig, ax = plt.subplots()
+
+ConfusionMatrixDisplay.from_estimator(model, X, y, ax=ax)
 
 st.pyplot(fig)
 
