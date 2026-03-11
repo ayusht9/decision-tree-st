@@ -3,7 +3,6 @@ import pandas as pd
 import joblib
 import matplotlib.pyplot as plt
 from sklearn.tree import plot_tree
-from sklearn.metrics import ConfusionMatrixDisplay
 
 # -----------------------------
 # Page Config
@@ -46,15 +45,12 @@ with tab1:
     if st.button("Predict Survival"):
 
         prediction = model.predict([[pclass, age, fare]])
-        prob = model.predict_proba([[pclass, age, fare]])
 
         if prediction[0] == 1:
             st.success("Passenger is likely to SURVIVE")
         else:
             st.error("Passenger is likely to NOT survive")
 
-        st.write("Survival Probability:", round(prob[0][1],2))
-        st.progress(float(prob[0][1]))
 
     st.subheader("Dataset Preview")
     st.dataframe(df.head())
@@ -145,15 +141,7 @@ with tab3:
 
     st.pyplot(fig)
 
-    st.subheader("Confusion Matrix")
 
-    fig, ax = plt.subplots()
 
-    ConfusionMatrixDisplay.from_estimator(
-        model,
-        X,
-        y,
-        ax=ax
-    )
 
-    st.pyplot(fig)
+
