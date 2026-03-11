@@ -78,13 +78,13 @@ col3, col4 = st.columns(2)
 with col3:
     st.write("Age Distribution")
     fig, ax = plt.subplots()
-    df['Age'].hist(bins=20, ax=ax)
+    df['age'].hist(bins=20, ax=ax)
     st.pyplot(fig)
 
 with col4:
     st.write("Fare Distribution")
     fig, ax = plt.subplots()
-    df['Fare'].hist(bins=20, ax=ax)
+    df['fare'].hist(bins=20, ax=ax)
     st.pyplot(fig)
 
 # -----------------------------
@@ -127,5 +127,6 @@ plot_tree(
 )
 
 st.pyplot(fig)
+
 
 
