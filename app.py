@@ -67,7 +67,7 @@ with col1:
 with col2:
     st.write("Passenger Class Distribution")
     fig, ax = plt.subplots()
-    df['Pclass'].value_counts().plot(kind='bar', ax=ax)
+    df['pclass'].value_counts().plot(kind='bar', ax=ax)
     st.pyplot(fig)
 
 # -----------------------------
@@ -127,4 +127,5 @@ plot_tree(
 )
 
 st.pyplot(fig)
+
 
