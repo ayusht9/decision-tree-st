@@ -58,7 +58,7 @@ col1, col2 = st.columns(2)
 with col1:
     st.write("Survival Count")
     fig, ax = plt.subplots()
-    df['Survived'].value_counts().plot(kind='bar', ax=ax)
+    df['survived'].value_counts().plot(kind='bar', ax=ax)
     ax.set_xlabel("Survived")
     ax.set_ylabel("Count")
     st.pyplot(fig)
@@ -127,3 +127,4 @@ plot_tree(
 )
 
 st.pyplot(fig)
+
