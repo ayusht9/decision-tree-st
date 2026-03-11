@@ -23,8 +23,8 @@ model = joblib.load("model.pkl")
 st.sidebar.header("Passenger Details")
 
 pclass = st.sidebar.selectbox("Passenger Class", [1,2,3])
-age = st.sidebar.slider("Age", 1, 80, 25)
-fare = st.sidebar.slider("Fare", 0, 200, 50)
+age = st.sidebar.slider("age", 1, 80, 25)
+fare = st.sidebar.slider("fare", 0, 200, 50)
 
 # -----------------------------
 # Prediction
@@ -59,7 +59,7 @@ with col1:
     st.write("Survival Count")
     fig, ax = plt.subplots()
     df['survived'].value_counts().plot(kind='bar', ax=ax)
-    ax.set_xlabel("Survived")
+    ax.set_xlabel("survived")
     ax.set_ylabel("Count")
     st.pyplot(fig)
 
@@ -71,18 +71,18 @@ with col2:
     st.pyplot(fig)
 
 # -----------------------------
-# Age Distribution
+# age Distribution
 # -----------------------------
 col3, col4 = st.columns(2)
 
 with col3:
-    st.write("Age Distribution")
+    st.write("age Distribution")
     fig, ax = plt.subplots()
     df['age'].hist(bins=20, ax=ax)
     st.pyplot(fig)
 
 with col4:
-    st.write("Fare Distribution")
+    st.write("fare Distribution")
     fig, ax = plt.subplots()
     df['fare'].hist(bins=20, ax=ax)
     st.pyplot(fig)
@@ -94,7 +94,7 @@ st.subheader("Survival by Passenger Class")
 
 fig, ax = plt.subplots()
 
-pd.crosstab(df['Pclass'], df['Survived']).plot(kind='bar', ax=ax)
+pd.crosstab(df['pclass'], df['survived']).plot(kind='bar', ax=ax)
 
 st.pyplot(fig)
 
@@ -103,7 +103,7 @@ st.pyplot(fig)
 # -----------------------------
 st.subheader("Feature Importance")
 
-features = ['Pclass','Age','Fare']
+features = ['pclass','age','fare']
 importance = model.feature_importances_
 
 fig, ax = plt.subplots()
@@ -121,12 +121,13 @@ fig, ax = plt.subplots(figsize=(14,6))
 
 plot_tree(
     model,
-    feature_names=['Pclass','Age','Fare'],
-    class_names=["Dead","Survived"],
+    feature_names=['pclass','age','fare'],
+    class_names=["dead","survived"],
     filled=True
 )
 
 st.pyplot(fig)
+
 
 
 
